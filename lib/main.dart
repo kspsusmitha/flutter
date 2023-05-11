@@ -30,6 +30,11 @@ class ListViewBuilder extends StatefulWidget {
 
 class _ListViewBuilderState extends State<ListViewBuilder> {
   int _currentIndex = 0;
+  final _currentPage = const [
+    listnn(),
+    Parttwo(),
+    partthree(),
+  ];
 
   static const List<Widget> _pages = <Widget>[
     Icon(
@@ -49,13 +54,10 @@ class _ListViewBuilderState extends State<ListViewBuilder> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("ListView.builder")),
-      
       body: SafeArea(
-          child: Center(
-        child: _pages.elementAt(_currentIndex), //New
+          child: Scaffold(
+        body: _currentPage[_currentIndex], //New
       )),
-     
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         selectedItemColor: Colors.blue,
@@ -85,10 +87,7 @@ class _ListViewBuilderState extends State<ListViewBuilder> {
 
   void _onItemTapped(int index) {
     setState(() {
-
-    _currentIndex = index;
-   
-      
+      _currentIndex = index;
     });
   }
 }
@@ -111,6 +110,72 @@ class _listnnState extends State<listnn> {
             children: List.generate(100, (index) {
               return ListTile(
                 leading: CircleAvatar(backgroundColor: Colors.amber),
+                title: Text('Title'),
+                trailing: Icon(Icons.more_vert),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const MyApp2()),
+                  );
+                },
+              );
+            }),
+          ),
+        )));
+  }
+}
+
+class Parttwo extends StatefulWidget {
+  const Parttwo({super.key});
+
+  @override
+  State<Parttwo> createState() => _ParttwoState();
+}
+
+class _ParttwoState extends State<Parttwo> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(title: const Text("ListView.builder")),
+        body: SafeArea(
+            child: SingleChildScrollView(
+          child: Column(
+            children: List.generate(100, (index) {
+              return ListTile(
+                leading: CircleAvatar(backgroundColor: Colors.pink),
+                title: Text('Title'),
+                trailing: Icon(Icons.more_vert),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const MyApp2()),
+                  );
+                },
+              );
+            }),
+          ),
+        )));
+  }
+}
+
+class partthree extends StatefulWidget {
+  const partthree({super.key});
+
+  @override
+  State<partthree> createState() => _partthreeState();
+}
+
+class _partthreeState extends State<partthree> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(title: const Text("ListView.builder")),
+        body: SafeArea(
+            child: SingleChildScrollView(
+          child: Column(
+            children: List.generate(100, (index) {
+              return ListTile(
+                leading: CircleAvatar(backgroundColor: Colors.green),
                 title: Text('Title'),
                 trailing: Icon(Icons.more_vert),
                 onTap: () {
