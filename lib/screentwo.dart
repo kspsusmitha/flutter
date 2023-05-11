@@ -15,8 +15,11 @@ class MyApp2 extends StatefulWidget {
 class _MyAppState extends State<MyApp2> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(child: Container( )),
+    return MaterialApp(
+      home: Scaffold(
+        backgroundColor: Colors.indigo,
+        body: SafeArea(child: Container()),
+      ),
     );
   }
 }
